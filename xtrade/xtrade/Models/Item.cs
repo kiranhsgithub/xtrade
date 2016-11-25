@@ -29,10 +29,7 @@ namespace xtrade.Models
         [StringLength(500)]
         public string Description { get; set; }
 
-
-
-
-
+        //public ICollection
 
     }
 }
