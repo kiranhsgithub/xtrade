@@ -85,3 +85,4 @@ D:\worksapce\x2\xtrade\xtrade\xtrade\bin\Microsoft.Owin.Security.Twitter.xml
 D:\worksapce\x2\xtrade\xtrade\xtrade\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\worksapce\x2\xtrade\xtrade\xtrade\obj\Debug\xtrade.dll
 D:\worksapce\x2\xtrade\xtrade\xtrade\obj\Debug\xtrade.pdb
+D:\worksapce\x2\xtrade\xtrade\xtrade\obj\Debug\xtrade.csprojResolveAssemblyReference.cache

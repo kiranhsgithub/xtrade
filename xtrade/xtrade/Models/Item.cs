@@ -19,8 +19,8 @@ namespace xtrade.Models
         [EmailAddress]
         public string Buyer { get; set; }
 
-        [Required]
-        public double amount { get; set; }
+        
+        public virtual double amount { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -29,7 +29,24 @@ namespace xtrade.Models
         [StringLength(500)]
         public string Description { get; set; }
 
-        //public ICollection
+        public virtual ICollection<Image> Images { get; set; }
+
+        public virtual ICollection<BargainRecord> BargainRecords { get; set; }
+
+        public double getTotalAmount()
+        {
+            if(this.Images != null && this.Images.Count > 0)
+            {
+                double totalAmount = 0.0;
+                foreach (Image image in this.Images)
+                {
+                    totalAmount += image.Amount;
+                }
+                return totalAmount;
+            }
+            
+                return 0.0;
+        }
 
     }
 }

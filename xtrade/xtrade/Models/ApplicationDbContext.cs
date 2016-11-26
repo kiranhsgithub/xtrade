@@ -17,5 +17,11 @@ namespace xtrade.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<xtrade.Models.Item> Items { get; set; }
+
+        public System.Data.Entity.DbSet<xtrade.Models.Image> Images { get; set; }
+
+        public System.Data.Entity.DbSet<xtrade.Models.BargainRecord> BargainRecords { get; set; }
     }
 }
