@@ -20,7 +20,7 @@ namespace xtrade.Models
         public string Buyer { get; set; }
 
         
-        public virtual double amount { get; set; }
+        public virtual double Amount { get; set; }
 
         [Required]
         [StringLength(50)]

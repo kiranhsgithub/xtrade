@@ -48,7 +48,7 @@ namespace xtrade.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,description,price,category")] Item item)
+        public ActionResult Create([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace xtrade.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,description,price,category")] Item item)
+        public ActionResult Edit([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description")] Item item)
         {
             if (ModelState.IsValid)
             {
