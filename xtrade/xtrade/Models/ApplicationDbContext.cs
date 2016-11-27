@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Entity;
 
 namespace xtrade.Models
 {
@@ -14,12 +13,15 @@ namespace xtrade.Models
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Item> Items { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<xtrade.Models.Item> Items { get; set; }
+
+        public System.Data.Entity.DbSet<xtrade.Models.Image> Images { get; set; }
+
+        public System.Data.Entity.DbSet<xtrade.Models.BargainRecord> BargainRecords { get; set; }
     }
 }
-

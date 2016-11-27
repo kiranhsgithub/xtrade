@@ -15,14 +15,14 @@ namespace xtrade.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Buy and Sell is now Made Easy.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Have a Question or a Problem?";
 
             return View();
         }

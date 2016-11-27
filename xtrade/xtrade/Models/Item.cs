@@ -1,41 +1,52 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
 namespace xtrade.Models
 {
-    public enum Classification { Automotive, Furniture, ClothesNShoes, Electronics, Books, Services, Miscellaneous};
-    
     public class Item
     {
-        static int item_count = 1;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-        //User enters
-        public string name { get; set; }
-        public string description { get; set; }
-        public int price { get; set; }
-        public Classification category { get; set; }
-        
-        //Set automatically
-        public int id { get; set; }
-        public bool bIsAvailable;
-        public User seller { get; set; }
-        public User buyer { get; set; }              
-        
-        public System.DateTime postedOn;
+        [EmailAddress]
+        public string Seller { get; set; }
 
-        public int nViews;
-        public Item()
+        [EmailAddress]
+        public string Buyer { get; set; }
+
+        
+        public virtual double amount { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set;  }
+
+        [StringLength(500)]
+        public string Description { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
+
+        public virtual ICollection<BargainRecord> BargainRecords { get; set; }
+
+        public double getTotalAmount()
         {
-            bIsAvailable = true;
-            nViews = 0;
-            postedOn = new System.DateTime();
-            postedOn = System.DateTime.Now;
-            id = item_count++;
-            //seller = currentUser; 
+            if(this.Images != null && this.Images.Count > 0)
+            {
+                double totalAmount = 0.0;
+                foreach (Image image in this.Images)
+                {
+                    totalAmount += image.Amount;
+                }
+                return totalAmount;
+            }
+            
+                return 0.0;
         }
 
-        public void buy(ref User Buyer)
-        {
-            bIsAvailable = false;
-            //buyer = Buyer; 
-        }
     }
 }
