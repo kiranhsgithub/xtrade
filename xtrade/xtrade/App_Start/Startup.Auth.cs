@@ -58,11 +58,11 @@ namespace xtrade
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "616754533749-195plpnff83246v91r3tkle14e32ndt9.apps.googleusercontent.com",
+                ClientSecret = "WJzOCvJTjD_FU2wR-evX6aWu"
+            });
         }
     }
 }
