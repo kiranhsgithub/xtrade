@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,8 +49,34 @@ namespace xtrade.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description")] Item item)
+        public ActionResult Create([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description")] Item item, IEnumerable<HttpPostedFileBase> files)
         {
+            item.Seller = User.Identity.Name;
+            item.Images = new List<Image>();
+            foreach (var upload in files)
+            {                
+                if (upload != null && upload.ContentLength > 0)
+                {
+
+                    var fileName = Path.GetFileName(upload.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                    upload.SaveAs(path);
+
+                    Image image = new Image();
+                    image.ImageName = System.IO.Path.GetFileName(upload.FileName);
+                    image.ContentType = upload.ContentType;
+                    //image.ItemId = item.Id;
+
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        image.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    //item.Images = new List<File> { image };
+                    item.Images.Add(image);
+
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Items.Add(item);
