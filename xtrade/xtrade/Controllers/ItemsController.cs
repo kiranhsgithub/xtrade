@@ -15,23 +15,15 @@ namespace xtrade.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Index()
+        public ActionResult Index(string CategoryName="")
         {
-            List<Item> items = db.Items.ToList();
-
-            /*List<string> users = new List<string>();
-            foreach(var item in items)
-            {
-                users.Add(item.Seller);
-            }
-
-            var usersList =  db.Users.Where(s => users.Contains(s.Roles.ToString())).ToList();
-
-            foreach (var item in items)
-            {
-                if()
-            }*/
-
+            List<Item> fulllist = db.Items.ToList();
+            List<Item> items;
+            if (CategoryName.Length != 0)
+                items = fulllist.Where(x => x.Category.CategoryName.CompareTo(CategoryName) == 0).ToList(); 
+            else
+                items = fulllist;
+                       
             items.Sort((x, y) => x.Category.CategoryName.CompareTo(y.Category.CategoryName));
 
             items.Sort((x, y) => x.Seller.Substring(0,1).CompareTo(y.Seller.Substring(0,1)));
