@@ -28,7 +28,21 @@ namespace xtrade.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Include(s => s.Images).SingleOrDefault(s => s.Id == id);
+            Item item = db.Items.Single(s => s.Id == id);
+            db.Entry(item).Collection(u => u.Images)
+                .Query().Where(image => image.DoNotDisplay == false).Load();
+
+
+            List<Image> iss = new List<Image>();
+            foreach(Image i in item.Images)
+            {
+                if(!i.DoNotDisplay)
+                {
+                    iss.Add(i);
+                }
+            }
+            item.Images = iss;
+
             if (item == null)
             {
                 return HttpNotFound();
@@ -96,7 +110,23 @@ namespace xtrade.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Include(s => s.Images).SingleOrDefault(s => s.Id == id);
+            //Item item = db.Items.Include(s => s.Images).SingleOrDefault(s => s.Id == id);
+
+            Item item = db.Items.Single(s => s.Id == id);
+            db.Entry(item).Collection(u => u.Images)
+                .Query().Where(image => image.DoNotDisplay == false).Load();
+
+
+            List<Image> iss = new List<Image>();
+            foreach (Image i in item.Images)
+            {
+                if (!i.DoNotDisplay)
+                {
+                    iss.Add(i);
+                }
+            }
+            item.Images = iss;
+
             if (item == null)
             {
                 return HttpNotFound();
@@ -110,13 +140,32 @@ namespace xtrade.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description,Images")] Item item, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Edit([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description,DoNotDisplayImages")] Item item, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
                 item.Seller = User.Identity.Name;
-                item.Images = new List<Image>();
+                List<Image> images = db.Images.Where(s => s.ItemId == item.Id).ToList();
 
+                List<string> doNotDisplayIds = item.DoNotDisplayImages.Split(',').ToList();
+
+                foreach(Image image in images){
+                    
+                    if (doNotDisplayIds != null && doNotDisplayIds.Contains(image.ImageId.ToString()))
+                    {
+                        image.DoNotDisplay = true;
+                    }
+                    else
+                    {
+                        image.DoNotDisplay = false;
+                    }
+                    db.Entry(image).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+
+
+                //item.Images = images;
                 foreach (var upload in files)
                 {
                     if (upload != null && upload.ContentLength > 0)
@@ -136,7 +185,7 @@ namespace xtrade.Controllers
                     }
                 }
 
-                 db.Entry(item).State = EntityState.Modified;
+                db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -64,11 +64,16 @@
                 <div class="col-md-10">
                     <img src="~/Images?id=@Model.Images.ElementAt(i).ImageId"
                          class="img-thumbnail" alt="@Model.Name" height="900" width="600" />
-                    <span><input type="checkbox" name="MarkForDeletion@Model.Images.ElementAt(i).ImageId" 
-                                 value="@Model.Images.ElementAt(i).DoNotDisplay"> Mark for Deletion <br></span>
+                    <span> <input type="checkbox" ng-model="@( "MarkForDeletion.P" +Model.Images.ElementAt(i).ImageId)" 
+                                 ng-change="toggleDeletionMark(@( "MarkForDeletion," +Model.Images.ElementAt(i).ImageId))"
+                                 ng-true-value="'YES'" ng-false-value="'NO'"> Mark for Deletion 
+                    
+                    <br></span>
                 </div>
            </div>
         }
+
+        <input type="hidden" name="DoNotDisplayImages" id="DoNotDisplayImages" value="{{DoNotDisplayImages}}">
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

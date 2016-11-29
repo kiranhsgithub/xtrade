@@ -33,6 +33,8 @@ namespace xtrade.Models
 
         public virtual ICollection<BargainRecord> BargainRecords { get; set; }
 
+        public string DoNotDisplayImages { get; set; }
+
         public double getTotalAmount()
         {
             if(this.Images != null && this.Images.Count > 0)
