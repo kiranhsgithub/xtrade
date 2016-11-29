@@ -26,7 +26,7 @@ namespace xtrade.Models
 
         public bool DoNotDisplay { get; set; }
 
-        public int? ItemId { get; set; }
+        public int ItemId { get; set; }
         public virtual Item Item { get; set; }
 
         public virtual ICollection<BargainRecord> BargainRecords { get; set; }
