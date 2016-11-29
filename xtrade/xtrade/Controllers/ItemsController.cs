@@ -173,7 +173,7 @@ namespace xtrade.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.CategoryName != "All"), "CategoryId", "CategoryName");
             return View();
         }
 
@@ -231,11 +231,21 @@ namespace xtrade.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Item item = db.Items.Include(s => s.Images).SingleOrDefault(s => s.Id == id);
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
+            ViewBag.CategoryId = new SelectList(db.Categories.Where(c => c.CategoryName != "All"), "CategoryId", "CategoryName");
 
-            Item item = db.Items.Single(s => s.Id == id);
+            
+
+            Item item = db.Items.Include(c => c.Category).Single(s => s.Id == id);
             db.Entry(item).Collection(u => u.Images)
                 .Query().Where(image => image.DoNotDisplay == false).Load();
+
+            foreach (SelectListItem selectListItem in ViewBag.CategoryId)
+            {
+                if (selectListItem.Value.Equals(item.Category.CategoryId.ToString()))
+                {
+                    selectListItem.Selected = true;
+                }
+            }
 
 
             List<Image> iss = new List<Image>();
