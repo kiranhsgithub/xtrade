@@ -7,17 +7,17 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null,null,FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal" data-ng-controller="ItemController">
         <h4>Item</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             @Html.LabelFor(model => model.Seller, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Seller, new { htmlAttributes = new { @class = "form-control" } })
@@ -31,7 +31,7 @@
                 @Html.EditorFor(model => model.Buyer, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Buyer, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
             @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -54,6 +54,33 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @for (var i = 0; i < Model.Images.Count; i++)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2" for="MarkForDeletion@Model.Images.ElementAt(i).ImageId">Image @(i + 1)</label>
+                <div class="col-md-10">
+                    <img src="~/Images?id=@Model.Images.ElementAt(i).ImageId"
+                         class="img-thumbnail" alt="@Model.Name" height="900" width="600" />
+                    <span><input type="checkbox" name="MarkForDeletion@Model.Images.ElementAt(i).ImageId" 
+                                 value="@Model.Images.ElementAt(i).DoNotDisplay"> Mark for Deletion <br></span>
+                </div>
+           </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-default" data-ng-click="addImage()">Add Image</button>
+            </div>
+        </div>
+
+        <div class="form-group" data-ng-repeat="image in images">
+            <label class="control-label col-md-2" for="{{image.name}}">Image</label>
+            <div class="col-md-10">
+                <input type="file" id="{{image.name}}" name="files" accept="image/*" />
+                <i class="fa fa-times pull-right" data-ng-click="removeImage(image.name)"></i>
             </div>
         </div>
 

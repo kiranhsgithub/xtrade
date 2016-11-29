@@ -50,6 +50,17 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
+        @for (var i = 0; i < Model.Images.Count; i++)
+        {
+            <dt>
+               Image @(i + 1)
+            </dt>
+            <dd>
+                <img src="~/Images?id=@Model.Images.ElementAt(i).ImageId" 
+                     class="img-thumbnail" alt="@Model.Name" height="900" width="600"/>
+            </dd>
+        }
+
     </dl>
 </div>
 <p>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,10 +16,10 @@ namespace xtrade.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Images
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var images = db.Images.Include(i => i.Item);
-            return View(images.ToList());
+            var image = db.Images.Find(id);
+            return File(image.Content, image.ContentType);
         }
 
         // GET: Images/Details/5

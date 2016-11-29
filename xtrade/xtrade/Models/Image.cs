@@ -24,6 +24,7 @@ namespace xtrade.Models
         [Required]
         public double Amount { get; set; }     
 
+        public bool DoNotDisplay { get; set; }
 
         public int? ItemId { get; set; }
         public virtual Item Item { get; set; }
