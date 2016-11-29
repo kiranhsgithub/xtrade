@@ -7,6 +7,13 @@
 XTrade is a trading platform which can help people buy and sell anything without any hassles. Users can post their ad's, search for and browse various products and buy whatever they like via our app. We have implemented this via ASP.Net MVC framework. We have used various web API's and web services in this project. 
 
 ## Business blueprint
+
+[![XTrade](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/video.PNG)](https://www.youtube.com/watch?v=G8xOHyvN2l0)
+
+
+
+<iframe width="480" height="311" src="http://www.powtoon.com/embed/drR18NAXiYy/" frameborder="0"></iframe>
+
 ### Core Functionality
 * Users can browse the products available without logging in. 
 * Users can search for the items by entering the key words in the search bar. 
