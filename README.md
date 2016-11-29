@@ -14,3 +14,5 @@ Application which does following at minimum
 * Seller should be able to chat with the buyer
 * Both buyer and seller should be able to check whether the counter-party has read the message
  
+ 
+XTrade is a trading platform which can help people buy and sell goods without any hassles. 
