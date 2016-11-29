@@ -29,12 +29,15 @@ namespace xtrade.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Item item = db.Items.Single(s => s.Id == id);
-            db.Entry(item).Collection(u => u.Images)
-                .Query().Where(image => image.DoNotDisplay == false).Load();
+            //db.Entry(item).Collection(u => u.Images)
+            //    .Query().Where(image => image.DoNotDisplay == false).Load();
 
+
+            item.Images = db.Images.Where(s => s.ItemId == item.Id).ToList();
 
             List<Image> iss = new List<Image>();
-            foreach(Image i in item.Images)
+            
+            foreach (Image i in item.Images)
             {
                 if(!i.DoNotDisplay)
                 {
@@ -152,7 +155,9 @@ namespace xtrade.Controllers
                 List<string> doNotDisplayIds = item.DoNotDisplayImages != null?
                         item.DoNotDisplayImages.Split(',').ToList(): new List<string>();
 
-                foreach(Image image in images){
+                item.Images = new List<Image>();
+
+                foreach (Image image in images){
                     
                     if (image.DoNotDisplay || doNotDisplayIds != null && doNotDisplayIds.Contains(image.ImageId.ToString()))
                     {
@@ -162,13 +167,15 @@ namespace xtrade.Controllers
                     {
                         image.DoNotDisplay = false;
                     }
-                    db.Entry(image).State = EntityState.Modified;
-                    db.SaveChanges();
+                    item.Images.Add(image);
+                    //db.Entry(image).State = EntityState.Modified;
+                    //db.SaveChanges();
                 }
 
+                db.Items.Attach(item);
 
 
-                item.Images = new List<Image>();
+                
                 foreach (var upload in files)
                 {
                     if (upload != null && upload.ContentLength > 0)
@@ -185,6 +192,8 @@ namespace xtrade.Controllers
                         }
                         //item.Images = new List<File> { image };
                         item.Images.Add(image);
+                        //db.Entry(image).State = EntityState.Modified;
+                        //db.SaveChanges();
                     }
                 }
 
