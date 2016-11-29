@@ -6,13 +6,6 @@
 ## Welcome to XTrade app!
 XTrade is a trading platform which can help people buy and sell anything without any hassles. Users can post their ad's, search for and browse various products and buy whatever they like via our app. We have implemented this via ASP.Net MVC framework. We have used various web API's and web services in this project. 
 
-## Target Audience
-The main target audience are people who want to sell their goods. Our application is seller driven as most of the control is in the hands of the seller. A seller can either accept or reject the bids of his prospective buyers. Our app also targets the people who want to sell their services, like cleaning service, laundry service etc. The sellers are also a main source of income for our business, which is explained in the monetization section
-
-## Monetization
-Our service is relatively new and there is a lot of competetion. So we are not aiming at generating any profits initially. However, for current and future purposes, the profits would be drawn from a paid functionality called as 'premium user'.
-When a premium user posts an Ad, his ad is ranked at the top so that he can reach more number of prospective buyers. A small amount would be charged for premium users annually. They can make the payment via paypal or bank transfer.
-
 ## Business blueprint
 ### Core Functionality
 * Users can browse the products available without logging in. 
@@ -29,6 +22,16 @@ The following diagram explains the business process.
 ![Xtrade Logo](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/BP.png)
 
 ### Technical Design
+
+
+
+## Target Audience
+The main target audience are people who want to sell their goods. Our application is seller driven as most of the control is in the hands of the seller. A seller can either accept or reject the bids of his prospective buyers. Our app also targets the people who want to sell their services, like cleaning service, laundry service etc. The sellers are also a main source of income for our business, which is explained in the monetization section
+
+## Monetization
+Our service is relatively new and there is a lot of competetion. So we are not aiming at generating any profits initially. However, for current and future purposes, the profits would be drawn from a paid functionality called as 'premium user'.
+When a premium user posts an Ad, his ad is ranked at the top so that he can reach more number of prospective buyers. A small amount would be charged for premium users annually. They can make the payment via paypal or bank transfer.
+
 
 
 
