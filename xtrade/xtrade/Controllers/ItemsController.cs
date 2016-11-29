@@ -15,20 +15,126 @@ namespace xtrade.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Index(string CategoryName="")
+        public ActionResult Index()
         {
-            List<Item> fulllist = db.Items.ToList();
-            List<Item> items;
-            if (CategoryName.Length != 0)
-                items = fulllist.Where(x => x.Category.CategoryName.CompareTo(CategoryName) == 0).ToList(); 
+
+            List<Item> items = null;
+            if (User.IsInRole("Admin"))
+            {
+                items = db.Items.ToList();
+            }
             else
+            {
+                items = db.Items.Where(x => x.Seller == User.Identity.Name).ToList();
+            }
+
+            items.Sort((x, y) => x.Category.CategoryName.CompareTo(y.Category.CategoryName));
+
+            items.Sort((x, y) => x.Seller.Substring(0, 1).CompareTo(y.Seller.Substring(0, 1)));
+            return View(items);
+
+
+            /*List<Item> fulllist = db.Items.ToList();
+			List<Item> items;
+
+            if (CategoryName.Length != 0) 
+			{
+                items = fulllist.Where(x => x.Category.CategoryName.CompareTo(CategoryName) == 0).ToList(); 
+            }
+			else
+			{
                 items = fulllist;
+			}
                        
             items.Sort((x, y) => x.Category.CategoryName.CompareTo(y.Category.CategoryName));
 
             items.Sort((x, y) => x.Seller.Substring(0,1).CompareTo(y.Seller.Substring(0,1)));
-            //return View(db.Items.ToList());
             return View(items);
+            */
+
+        }
+
+        public ActionResult Search(string query = "", string CategoryId = "")
+        {
+            var items = db.Items.Include(c => c.Category);
+
+
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
+            
+            
+
+            if (!string.IsNullOrWhiteSpace(CategoryId))
+            {
+                int cid = 8;
+                if(Int32.TryParse(CategoryId, out  cid))
+                {
+                    if(cid != 8)
+                    {
+                        items = items.Where(x => x.CategoryId.CompareTo(cid) == 0);
+                    }
+                    foreach (SelectListItem item in ViewBag.CategoryId)
+                    {
+                        if(item.Value == cid.ToString())
+                        {
+                            item.Selected = true;
+                        }
+                    }
+                }
+                
+                
+            }            
+
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return View(items);
+            }
+
+            List<string> queryStrings = query.Split(' ').ToList();
+
+            List<Item> matchingNameItems = new List<Item>();
+            List<Item> matchingDescriptionItems = new List<Item>();
+            List<Item> partialMatchingNames = new List<Item>();
+            List<Item> partialMatchingDescription = new List<Item>();
+
+            foreach (var it in items)
+            {
+                int nameMatchCount = 0;
+                int descMatchCount = 0;
+                foreach(var queryString in queryStrings)
+                {
+                    if(it.Name.Contains(queryString))
+                    {
+                        nameMatchCount++;
+                    }
+                    if (it.Description.Contains(queryString))
+                    {
+                        descMatchCount++;
+                    }
+                }
+
+                if(nameMatchCount == queryStrings.Count)
+                {
+                    matchingNameItems.Add(it);
+                }else if(descMatchCount == queryStrings.Count)
+                {
+                    matchingDescriptionItems.Add(it);
+                }else if(nameMatchCount > 0)
+                {
+                    partialMatchingNames.Add(it);
+                } else if(descMatchCount > 0)
+                {
+                    partialMatchingDescription.Add(it);
+                }
+            }
+
+            List<Item> returnItems = new List<Item>();
+            returnItems.AddRange(matchingNameItems);
+            returnItems.AddRange(matchingDescriptionItems);
+            returnItems.AddRange(partialMatchingNames);
+            returnItems.AddRange(partialMatchingDescription);
+
+            return View(returnItems);
+
         }
 
         // GET: Items/Details/5
