@@ -15,10 +15,28 @@ namespace xtrade.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Items
         public ActionResult Index()
         {
-            return View(db.Items.ToList());
+            List<Item> items = db.Items.ToList();
+
+            /*List<string> users = new List<string>();
+            foreach(var item in items)
+            {
+                users.Add(item.Seller);
+            }
+
+            var usersList =  db.Users.Where(s => users.Contains(s.Roles.ToString())).ToList();
+
+            foreach (var item in items)
+            {
+                if()
+            }*/
+
+            items.Sort((x, y) => x.Category.CategoryName.CompareTo(y.Category.CategoryName));
+
+            items.Sort((x, y) => x.Seller.Substring(0,1).CompareTo(y.Seller.Substring(0,1)));
+            //return View(db.Items.ToList());
+            return View(items);
         }
 
         // GET: Items/Details/5
