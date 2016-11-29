@@ -23,5 +23,7 @@ namespace xtrade.Models
         public System.Data.Entity.DbSet<xtrade.Models.Image> Images { get; set; }
 
         public System.Data.Entity.DbSet<xtrade.Models.BargainRecord> BargainRecords { get; set; }
+
+        public System.Data.Entity.DbSet<xtrade.Models.Category> Categories { get; set; }
     }
 }

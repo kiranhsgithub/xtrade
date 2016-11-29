@@ -19,8 +19,8 @@ namespace xtrade.Models
         [EmailAddress]
         public string Buyer { get; set; }
 
-        
-        public virtual double Amount { get; set; }
+        [Required]
+        public double Amount { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -28,6 +28,10 @@ namespace xtrade.Models
 
         [StringLength(500)]
         public string Description { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
 

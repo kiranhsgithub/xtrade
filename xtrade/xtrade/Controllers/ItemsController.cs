@@ -54,6 +54,7 @@ namespace xtrade.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -63,7 +64,7 @@ namespace xtrade.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description")] Item item, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description,CategoryId")] Item item, IEnumerable<HttpPostedFileBase> files)
         {
             item.Seller = User.Identity.Name;
             item.Images = new List<Image>();
@@ -111,6 +112,7 @@ namespace xtrade.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Item item = db.Items.Include(s => s.Images).SingleOrDefault(s => s.Id == id);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
 
             Item item = db.Items.Single(s => s.Id == id);
             db.Entry(item).Collection(u => u.Images)
@@ -140,18 +142,19 @@ namespace xtrade.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description,DoNotDisplayImages")] Item item, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Edit([Bind(Include = "Id,Seller,Buyer,Amount,Name,Description,DoNotDisplayImages,CategoryId")] Item item, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
                 item.Seller = User.Identity.Name;
                 List<Image> images = db.Images.Where(s => s.ItemId == item.Id).ToList();
 
-                List<string> doNotDisplayIds = item.DoNotDisplayImages.Split(',').ToList();
+                List<string> doNotDisplayIds = item.DoNotDisplayImages != null?
+                        item.DoNotDisplayImages.Split(',').ToList(): new List<string>();
 
                 foreach(Image image in images){
                     
-                    if (doNotDisplayIds != null && doNotDisplayIds.Contains(image.ImageId.ToString()))
+                    if (image.DoNotDisplay || doNotDisplayIds != null && doNotDisplayIds.Contains(image.ImageId.ToString()))
                     {
                         image.DoNotDisplay = true;
                     }
@@ -165,7 +168,7 @@ namespace xtrade.Controllers
 
 
 
-                //item.Images = images;
+                item.Images = new List<Image>();
                 foreach (var upload in files)
                 {
                     if (upload != null && upload.ContentLength > 0)
