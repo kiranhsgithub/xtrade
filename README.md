@@ -101,3 +101,4 @@ We have exposed our web service for use by businesses/individual users. This is 
 ![Complaints](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/Complaints.png)
 
 
+[![Technical details](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/Code.PNG)](https://www.youtube.com/watch?v=DELS-d24QU0)
