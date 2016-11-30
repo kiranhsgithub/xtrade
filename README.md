@@ -10,9 +10,9 @@ XTrade is a trading platform which can help people buy and sell anything without
 
 [![XTrade](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/video.PNG)](https://www.youtube.com/watch?v=sKQK4Oo1q00)
 
-#Features/Business Rules
+##Features/Business Rules
 
-##Current
+###Current
 
 * User is be able to register
 * User is able to login via local email or dign in via google 
@@ -24,7 +24,7 @@ XTrade is a trading platform which can help people buy and sell anything without
 * User is able to register a complaint
 * Users/Businesses can consume our web service and get all the details of our products
 
-##Future additional functionalities
+###Future additional functionalities
 
 * User (buyer) should be able to bargain and quote reduced price along with an optional message 
 * User (seller) should be able to accept new (reduced) price or reject it along with an optional message 
@@ -58,33 +58,45 @@ Our service is relatively new and there is a lot of competetion. So we are not a
 When a premium user posts an Ad, his Ad is shown at the top of the search results so that he can reach more number of prospective buyers. A small amount would be charged for premium users annually. They can make the payment via paypal or bank transfer to the specified account number.
 We have exposed our web service for use by businesses/individual users. This is provided for free as when other businesses use our web service and access the data of our goods, it can increase our sales tremendously and also increase the popularity of the website, leading to indirect cash flow.
 
-### Screenshots
+## Screenshots
 
-1. Home page of the application:We have made a simple interface.
+### Home page of the application:We have made a simple interface.
 
 ![Home page](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/homepage.PNG)
 
-2. Register using local email account or a google account.
+
+
+###Register using local email account or a google account.
 
 ![Registering](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/Register.png)
 
-3. Add new items by going to 'post an ad' screen. Also, as seen here, the my items screen shows only items of the user.
+
+
+###Add new items by going to 'post an ad' screen. Also, as seen here, the my items screen shows only items of the user.
 
 ![Posting an AD](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/AD.png)
 
-4. See all items in the search screen. If the user is premium, his ads are shown first when somebody searches.
+
+
+###See all items in the search screen. If the user is premium, his ads are shown first when somebody searches.
 
 ![All items screen](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/All%20Items.PNG)
 
-5. Search by selecting specific category or all categories. If there are 2 itemscontaining the search term, then they are given preferance based on how close they are to the search term.
+
+
+###Search by selecting specific category or all categories. If there are 2 itemscontaining the search term, then they are given preferance based on how close they are to the search term.
 
 ![Search](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/Search.PNG)
 
-6. Web service can be accessed via the URL as shown below.
+
+
+###Web service can be accessed via the URL as shown below.
 
 ![Web Service](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/WebService.png)
 
-7. If you have any complaints, you can send us a message via the contact page.
+
+
+###If you have any complaints, you can send us a message via the contact page.
 
 ![Complaints](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/screens/Complaints.png)
 
