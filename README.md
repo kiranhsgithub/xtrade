@@ -10,7 +10,24 @@ XTrade is a trading platform which can help people buy and sell anything without
 
 [![XTrade](https://raw.githubusercontent.com/kiranhsgithub/xtrade/master/video.PNG)](https://www.youtube.com/watch?v=G8xOHyvN2l0)
 
+#Features/Business Rules
 
+##Current
+
+* User shall be able to register
+* User should be able to login
+* User should be able to post and ad
+* User should be able to enter item name, description, amount, Picture 
+* User should be able to search items
+* View item details
+* User should be able to buy and item 
+
+##Scope of improvements 
+
+* User (buyer) should be able to bargain and quote reduced price along with an optional message 
+* User (seller) should be able to accept new (reduced) price or reject it along with an optional message 
+* Seller should be able to chat with the buyer
+* Both buyer and seller should be able to check whether the counter-party has read the message
 
 <iframe width="480" height="311" src="http://www.powtoon.com/embed/drR18NAXiYy/" frameborder="0"></iframe>
 
@@ -38,22 +55,3 @@ The main target audience are people who want to sell their goods. Our applicatio
 ## Monetization
 Our service is relatively new and there is a lot of competetion. So we are not aiming at generating any profits initially. However, for current and future purposes, the profits would be drawn from a paid functionality called as 'premium user'.
 When a premium user posts an Ad, his ad is ranked at the top so that he can reach more number of prospective buyers. A small amount would be charged for premium users annually. They can make the payment via paypal or bank transfer.
-
-#Features/Business Rules
-
-##Current
-
-* User shall be able to register
-* User should be able to login
-* User should be able to post and ad
-* User should be able to enter item name, description, amount, Picture 
-* User should be able to search items
-* View item details
-* User should be able to buy and item 
-
-##Scope of improvements 
-
-* User (buyer) should be able to bargain and quote reduced price along with an optional message 
-* User (seller) should be able to accept new (reduced) price or reject it along with an optional message 
-* Seller should be able to chat with the buyer
-* Both buyer and seller should be able to check whether the counter-party has read the message
