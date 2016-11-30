@@ -41,11 +41,7 @@ When a premium user posts an Ad, his ad is ranked at the top so that he can reac
 
 
 
-
-
-# xtrade
-
-Application which does following at minimum
+#Current Behavior
 
 * User shall be able to register
 * User should be able to login
@@ -55,7 +51,7 @@ Application which does following at minimum
 * View item details
 * User should be able to buy and item 
 
-Scope of improvements 
+#Scope of improvements 
 
 * User (buyer) should be able to bargain and quote reduced price along with an optional message 
 * User (seller) should be able to accept new (reduced) price or reject it along with an optional message 
