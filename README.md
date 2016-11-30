@@ -54,6 +54,9 @@ Application which does following at minimum
 * He should be able to enter item name, description, amount, Picture 
 * User should be able to search items, View item details
 * User should be able to buy and item 
+
+Scope of improvements 
+
 * User (buyer) should be able to bargain and quote reduced price along with an optional message 
 * User (seller) should be able to accept new (reduced) price or reject it along with an optional message 
 * Seller should be able to chat with the buyer
