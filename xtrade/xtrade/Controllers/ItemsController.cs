@@ -56,7 +56,7 @@ namespace xtrade.Controllers
 
         public ActionResult Search(string query = "", string CategoryId = "")
         {
-            var items = db.Items.Include(c => c.Category);
+            var items = db.Items.Include(c => c.Category).Where(x => x.Buyer == null);
 
 
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "CategoryName");
@@ -264,6 +264,34 @@ namespace xtrade.Controllers
             }
             return View(item);
         }
+
+        [Authorize]
+        public ActionResult Buy(int id)
+        {
+            Item item = db.Items.Where(x => x.Id == id).Single();
+
+            if (ModelState.IsValid)
+            {
+                item.Images = db.Images.Where(s => s.ItemId == item.Id).ToList();
+
+                List<Image> iss = new List<Image>();
+
+                foreach (Image i in item.Images)
+                {
+                    if (!i.DoNotDisplay)
+                    {
+                        iss.Add(i);
+                    }
+                }
+                item.Images = iss;
+
+                item.Buyer = User.Identity.Name;
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return View(item);
+        }
+
 
         // POST: Items/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

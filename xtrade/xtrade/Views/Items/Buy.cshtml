@@ -9,8 +9,6 @@
 <div>
     <h4>Item</h4>
     <hr />
-    @Html.HiddenFor(model => model.Id)
-
     <dl class="dl-horizontal">
 
         <dt>
@@ -74,11 +72,13 @@
     </dl>
 </div>
 
-@if (User.Identity.Name == Model.Seller)
+<p> Bought </p>
+
+@if (User.Identity.Name == Model.Seller && Model.Buyer == null)
 {
     <p>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary", @style = "color:white" })</p>
 }
-else
+@if (User.Identity.Name != Model.Seller && Model.Buyer == null)
 {
     <p>@Html.ActionLink("Buy", "Buy", new { id = Model.Id }, new { @class = "btn btn-primary", @style = "color:white" })</p>
 }

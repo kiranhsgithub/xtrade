@@ -50,6 +50,11 @@
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts {
+@Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.0.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/board.js"></script>
 }
