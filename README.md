@@ -49,10 +49,10 @@ Application which does following at minimum
 
 * User shall be able to register
 * User should be able to login
-* User should be able to enter their Name, Email, Phone Number, address, Security Question to support forget password
-* User should be able to post and add
-* He should be able to enter item name, description, amount, Picture 
-* User should be able to search items, View item details
+* User should be able to post and ad
+* User should be able to enter item name, description, amount, Picture 
+* User should be able to search items
+* View item details
 * User should be able to buy and item 
 
 Scope of improvements 
