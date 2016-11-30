@@ -39,9 +39,9 @@ The main target audience are people who want to sell their goods. Our applicatio
 Our service is relatively new and there is a lot of competetion. So we are not aiming at generating any profits initially. However, for current and future purposes, the profits would be drawn from a paid functionality called as 'premium user'.
 When a premium user posts an Ad, his ad is ranked at the top so that he can reach more number of prospective buyers. A small amount would be charged for premium users annually. They can make the payment via paypal or bank transfer.
 
+##Features
 
-
-#Current Behavior
+#Current
 
 * User shall be able to register
 * User should be able to login
