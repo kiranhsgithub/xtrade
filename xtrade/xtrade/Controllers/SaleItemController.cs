@@ -27,7 +27,7 @@ namespace xtrade.Controllers
             }
             else
             {
-                items = db.Items.Where(x => x.Seller == User.Identity.Name).ToList();
+                items = db.Items.ToList();
             }
 
             items.Sort((x, y) => x.Category.CategoryName.CompareTo(y.Category.CategoryName));

@@ -86,7 +86,9 @@ namespace xtrade.Controllers
 
             if (string.IsNullOrWhiteSpace(query))
             {
-                return View(items);
+                List<Item> return2Items = items.ToList();
+                return2Items.Sort((x, y) => x.Seller.Substring(0, 1).CompareTo(y.Seller.Substring(0, 1)));
+                return View(return2Items);
             }
 
             List<string> queryStrings = query.Split(' ').ToList();
@@ -114,15 +116,19 @@ namespace xtrade.Controllers
 
                 if(nameMatchCount == queryStrings.Count)
                 {
+                    matchingNameItems.Sort((x, y) => x.Seller.Substring(0, 1).CompareTo(y.Seller.Substring(0, 1)));
                     matchingNameItems.Add(it);
                 }else if(descMatchCount == queryStrings.Count)
                 {
+                    matchingDescriptionItems.Sort((x, y) => x.Seller.Substring(0, 1).CompareTo(y.Seller.Substring(0, 1)));
                     matchingDescriptionItems.Add(it);
                 }else if(nameMatchCount > 0)
                 {
+                    partialMatchingNames.Sort((x, y) => x.Seller.Substring(0, 1).CompareTo(y.Seller.Substring(0, 1)));
                     partialMatchingNames.Add(it);
                 } else if(descMatchCount > 0)
                 {
+                    partialMatchingDescription.Sort((x, y) => x.Seller.Substring(0, 1).CompareTo(y.Seller.Substring(0, 1)));
                     partialMatchingDescription.Add(it);
                 }
             }
