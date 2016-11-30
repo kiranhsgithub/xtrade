@@ -20,14 +20,14 @@ namespace xtrade.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Buy and Sell is now Made Easy.";
+            ViewBag.Message = "XTrade Webapp, built using ASP.NET MVC framework";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Send us a postcard!!";
+            ViewBag.Message = "Our Headquarters!!";
 
             return View();
         }

@@ -1,6 +1,6 @@
 ﻿@model MVCEmail.Models.EmailFormModel
 @{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contact Us!";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
@@ -17,10 +17,13 @@
     <strong>Marketing:</strong> <a href="mailto:Marketing@xtrade.com">Marketing@xtrade.com</a>
 </address>
 
+
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <h4>Have a Question or a Problem? Send your queries/complaints here.</h4>
+    <h3>Have a Question or a Problem? Send your queries/complaints here.</h3>
     <hr />
     <div class="form-group">
         @Html.LabelFor(m => m.FromName, new { @class = "col-md-2 control-label" })

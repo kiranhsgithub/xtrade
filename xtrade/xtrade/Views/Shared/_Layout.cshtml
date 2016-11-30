@@ -23,7 +23,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("{{appName}}", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 <a class="navbar-brand" href="/" title="Go to XTrade home" id="logo">
                     <img height="35" src="~/Content/XTLogo.png">
                 </a>
@@ -31,11 +30,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Post an Ad", "Create", "Items")</li>
                     <li>@Html.ActionLink("Search", "Search", "Items")</li>
                     <li>@Html.ActionLink("My Items", "Index", "Items")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -64,17 +64,19 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-default" data-ng-click="addImage()">Add Image</button>
-            </div>
-        </div>
+
 
         <div class="form-group" data-ng-repeat="image in images">
             <label class="control-label col-md-2" for="{{image.name}}">Image</label>
             <div class="col-md-10">
                 <input type="file" id="{{image.name}}" name="files" accept="image/*" />
                 <i class="fa fa-times pull-right" data-ng-click="removeImage(image.name)"></i>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-theme-default" data-ng-click="addImage()"> + </button>
             </div>
         </div>
 
