@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +8,7 @@ using System.Web;
 
 namespace xtrade.Models
 {
+    
     public class Item
     {
         [Key]
@@ -35,8 +37,10 @@ namespace xtrade.Models
 
         public virtual ICollection<Image> Images { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<BargainRecord> BargainRecords { get; set; }
 
+        [JsonIgnore]
         public string DoNotDisplayImages { get; set; }
 
         public double getTotalAmount()
